@@ -1,0 +1,20 @@
+[package]
+name = "deft-app"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+deft = "0.2.0"
+
+[build-dependencies]
+deft-build = { version = "0.2.0" }
+
+[features]
+tray = ["deft/tray"]
+x11 = ["deft/x11"]
+wayland = ["deft/wayland"]
+
+[lib]
+name = "deftapp"
+path = "src/main.rs"
+crate-type=["cdylib"]
