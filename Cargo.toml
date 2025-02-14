@@ -4,7 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-deft = "0.2.0"
+deft = "0.2.4"
+ffmpeg-next = "7.1.0"
+serde = { version = "1.0.213", features = ["derive"] }
 
 [build-dependencies]
 deft-build = { version = "0.2.0" }
@@ -14,7 +16,7 @@ tray = ["deft/tray"]
 x11 = ["deft/x11"]
 wayland = ["deft/wayland"]
 
-[lib]
-name = "deftapp"
-path = "src/main.rs"
-crate-type=["cdylib"]
+#[lib]
+#name = "deftapp"
+#path = "src/main.rs"
+#crate-type=["cdylib"]

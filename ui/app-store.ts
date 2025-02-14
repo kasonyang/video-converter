@@ -42,7 +42,7 @@ export function updateTask(taskId: number, data: { status?: TaskStatus, progress
 }
 
 export function clearTasks() {
-    appStore.tasks.length = 0;
+    appStore.tasks = appStore.tasks.filter(it => it.status != "pending");
 }
 
 export function setOutput(output) {

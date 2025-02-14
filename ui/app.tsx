@@ -12,6 +12,7 @@ const App = () => {
     const [format, setFormat] = useState("mp4");
     const [size, setSize] = useState(0);
     const pageContext = useContext(PageContext);
+    const [converting, setConverting] = useState(false);
 
     const taskEls = appStore.tasks.map((it, idx) => {
         const progress = it.progress?.toFixed(2) || "";
@@ -126,9 +127,17 @@ const App = () => {
             let _ = pageContext.window.toast("Output directory is unspecified");
             return;
         }
-        for (const t of appStore.tasks) {
-            console.log(`converting ${t.source}`);
-            await processTask(t);
+        if (converting) {
+            return;
+        }
+        setConverting(true);
+        try {
+            for (const t of appStore.tasks) {
+                console.log(`converting ${t.source}`);
+                await processTask(t);
+            }
+        } finally {
+            setConverting(false);
         }
     }
 
@@ -181,7 +190,11 @@ const App = () => {
                 <Button title="Add Videos..." onClick={onAddFile} />
                 <Button title="Clear" onClick={onClear} />
             </Row>
-            <Button title="Start Convert" onClick={onStartConvert} />
+            <Button onClick={onStartConvert} style={{
+                color: converting ? '#666' : '#F9F9F9',
+            }}>
+                Start Convert
+            </Button>
         </Row>
     </Container>
 

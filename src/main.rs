@@ -2,6 +2,10 @@ use deft::app::{App, IApp};
 use deft::bootstrap;
 use deft::js::js_engine::JsEngine;
 use std::env;
+use crate::ext_ffmpeg::ffmpeg_convert;
+
+mod ext_ffmpeg;
+mod ffmpeg_util;
 
 struct MyApp {}
 
@@ -10,6 +14,7 @@ impl IApp for MyApp {
         js_engine
             .eval_module(include_str!("../dev-hack.js"), "dev-hack.js")
             .unwrap();
+        js_engine.add_global_func(ffmpeg_convert::new());
     }
 
     fn create_module_loader(

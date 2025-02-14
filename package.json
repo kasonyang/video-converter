@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "cross-env": "^7.0.3",
-    "deft-react": "^0.2.0",
+    "deft-react": "^0.3.0",
     "deft-sys": "^0.2.0",
     "react": "18.1.0",
     "react-reconciler": "0.28.0",
