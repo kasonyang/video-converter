@@ -909,6 +909,180 @@ dependencies = [
 ]
 
 [[package]]
+name = "deft"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c480026e9785034376f9bfc4f9b22a9c891a698c64052abd6b3c484154a9e51d"
+dependencies = [
+ "android_logger",
+ "anyhow",
+ "backtrace",
+ "base16ct",
+ "base64 0.22.1",
+ "bezier-rs",
+ "cfg_aliases 0.2.1",
+ "clipboard",
+ "deft-macros",
+ "deft-quick-js",
+ "deft-skia-safe",
+ "deft-winit",
+ "deft-yoga",
+ "futures-util",
+ "image",
+ "jni",
+ "ksni",
+ "lazy_static",
+ "libc",
+ "log",
+ "measure_time",
+ "memory-stats",
+ "native-dialog",
+ "ordered-float",
+ "raw-window-handle 0.5.2",
+ "reqwest",
+ "rodio",
+ "rusqlite",
+ "serde",
+ "serde_json",
+ "sha1",
+ "skia-window",
+ "sled",
+ "tokio",
+ "tokio-tungstenite",
+ "tokio-util",
+]
+
+[[package]]
+name = "deft-app"
+version = "0.1.0"
+dependencies = [
+ "deft",
+ "deft-build",
+]
+
+[[package]]
+name = "deft-build"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d14641f8f8e4f3ad70e41f490d2d7ec367f0a7280258ccb71777a10da76a235a"
+
+[[package]]
+name = "deft-macros"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ef7bdffbd79455104c1f9afc66b79c03115e0f9fa6611dcef8f1381c792dd2b4"
+dependencies = [
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "deft-quick-js"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "389ecea899555ce64495aaf0de2cb84b60959705bb08f8aa37648ba2623cdce7"
+dependencies = [
+ "anyhow",
+ "chrono",
+ "once_cell",
+ "rquickjs-sys",
+]
+
+[[package]]
+name = "deft-skia-bindings"
+version = "0.81.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a907a778e5ba85c5349aeedafe0f35fb83f0c900755393660999af519356e6eb"
+dependencies = [
+ "bindgen 0.71.1",
+ "cc",
+ "flate2",
+ "heck",
+ "regex",
+ "serde_json",
+ "tar",
+ "toml",
+]
+
+[[package]]
+name = "deft-skia-safe"
+version = "0.81.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9622d93384ca68c9cfb454799a7035045fc2abff6024040690d4e75969b0d409"
+dependencies = [
+ "base64 0.22.1",
+ "bitflags 2.6.0",
+ "deft-skia-bindings",
+ "lazy_static",
+ "percent-encoding",
+ "skia-svg-macros",
+]
+
+[[package]]
+name = "deft-winit"
+version = "0.30.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9d7bc9a0983b04138743ab1224e01ae0daaec4ecd046c9460de57ef6e0942ec2"
+dependencies = [
+ "ahash",
+ "android-activity",
+ "atomic-waker",
+ "bitflags 2.6.0",
+ "block2 0.5.1",
+ "bytemuck",
+ "calloop",
+ "cfg_aliases 0.2.1",
+ "concurrent-queue",
+ "core-foundation 0.9.4",
+ "core-graphics 0.23.2",
+ "cursor-icon",
+ "dpi",
+ "js-sys",
+ "libc",
+ "memmap2",
+ "ndk 0.9.0",
+ "objc2 0.5.2",
+ "objc2-app-kit",
+ "objc2-foundation",
+ "objc2-ui-kit",
+ "orbclient",
+ "percent-encoding",
+ "pin-project",
+ "raw-window-handle 0.5.2",
+ "raw-window-handle 0.6.2",
+ "redox_syscall 0.4.1",
+ "rustix",
+ "sctk-adwaita",
+ "smithay-client-toolkit",
+ "smol_str",
+ "tracing",
+ "unicode-segmentation",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
+ "wayland-backend",
+ "wayland-client",
+ "wayland-protocols",
+ "wayland-protocols-plasma",
+ "web-sys",
+ "web-time",
+ "windows-sys 0.52.0",
+ "x11-dl",
+ "x11rb",
+ "xkbcommon-dl",
+]
+
+[[package]]
+name = "deft-yoga"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6d672d20ede167b375a211e45c310d85a16ec58e9c4cad4eb76e2b0efe60bee3"
+dependencies = [
+ "bindgen 0.71.1",
+ "cc",
+ "ordered-float",
+]
+
+[[package]]
 name = "digest"
 version = "0.10.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3412,6 +3586,26 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn",
+]
+
+[[package]]
+name = "skia-window"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5b541594b41b1ebd2d84c79b79b71034e136afef16053fd7514c01a2b1dd33f2"
+dependencies = [
+ "android_logger",
+ "cfg_aliases 0.1.1",
+ "deft-skia-safe",
+ "deft-winit",
+ "env_logger",
+ "gl",
+ "gl_generator",
+ "glutin",
+ "log",
+ "measure_time",
+ "raw-window-handle 0.5.2",
+ "softbuffer",
 ]
 
 [[package]]
