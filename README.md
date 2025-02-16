@@ -11,7 +11,7 @@ npm run dev
 
 # Preview
 
-<img src="https://github.com/kasonyang/video-converter/blob/main/preview.gif?raw=true" width="800" />
+<img src="https://github.com/kasonyang/video-converter/blob/main/preview.png?raw=true" width="800" />
 
 # License
 
