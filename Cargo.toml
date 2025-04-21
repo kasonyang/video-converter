@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-deft = "0.2.4"
+deft = "0.4.3"
 ffmpeg-next = "7.1.0"
 serde = { version = "1.0.213", features = ["derive"] }
 

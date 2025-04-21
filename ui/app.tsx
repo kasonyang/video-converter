@@ -1,3 +1,4 @@
+import "./app.css"
 import React, {useContext, useState} from 'react'
 import {
     addSource, clearTasks, setOutput, Task, updateTask,
@@ -164,11 +165,11 @@ const App = () => {
         {label: "1080P", value: 1080},
     ]
 
-    return <Container style={{flex: 1, color: "#F1F1F1", background: '#31363B'}}>
+    return <Container style={{flex: 1}}>
         <Container style={{padding: '10'}}>
             <Row style={{justifyContent: 'space-between', gap: 10, alignItems: 'center'}}>
                 <Label text="Output path:" />
-                <Entry style={{flex: 1, height: 24, background: '#1B1E20', borderRadius: 4}} text={appStore.output} />
+                <Entry style={{flex: 1}} text={appStore.output} />
                 <Button title="Select..." onClick={onSelectOutDir} />
             </Row>
             <Row style={{gap: 10}}>

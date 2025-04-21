@@ -4,16 +4,23 @@
     globalThis.document = {
         currentScript: {
             src: globalThis.location,
+            tagName: 'script',
         },
         createElement(tag) {
-            if (tag === "script") {
+            const tagName = tag.toUpperCase();
+            if (tagName === "STYLE") {
                 return {
-                    tagName: "SCRIPT",
-                    setAttribute() {
-
+                    tagName,
+                    styleSheet: {
+                        set cssText(css) {
+                            navigator.stylesheet.append(css);
+                        }
                     },
-
                 }
+            }
+            return {
+                tagName,
+                setAttribute() {},
             }
         },
         getElementsByTagName() {
