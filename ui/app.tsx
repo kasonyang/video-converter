@@ -4,16 +4,26 @@ import {
     addSource, clearTasks, setOutput, Task, updateTask,
     useAppStoreSnapshot
 } from "./app-store";
-import {Button, Container, Entry, Label, OptionItem, PageContext, Row, Scroll, Select} from "deft-react";
+import {Button, Container, Entry, Label, PageContext, Row, Scroll, Select} from "deft-react";
 import {getFileName} from "./util/file-util";
 import TaskStatusIcon from "./components/task-status-icon";
 
 const App = () => {
     const appStore = useAppStoreSnapshot();
     const [format, setFormat] = useState("mp4");
-    const [size, setSize] = useState(0);
+    const [size, setSize] = useState("0");
     const pageContext = useContext(PageContext);
     const [converting, setConverting] = useState(false);
+
+    function onFormatChange(e: IVoidEvent) {
+        const target = e.target as SelectElement;
+        setFormat(target.value);
+    }
+
+    function onSizeChange(e: IVoidEvent) {
+        const target = e.target as SelectElement;
+        setSize(target.value);
+    }
 
     const taskEls = appStore.tasks.map((it, idx) => {
         const progress = it.progress?.toFixed(2) || "";
@@ -98,7 +108,7 @@ const App = () => {
                 const options: FFmpegConvertOptions = {
                     inputFile: task.source,
                     outputFile: outPath,
-                    outputHeight: size,
+                    outputHeight: Number(size),
                 }
                 ffmpeg_convert(options, (status, param) => {
                     if (status === "progress") {
@@ -121,14 +131,11 @@ const App = () => {
 
     async function onStartConvert() {
         if (!appStore.tasks?.length) {
-            let _ = pageContext.window.toast("No video files");
+            pageContext.window.showAlert("No video files");
             return;
         }
         if (!appStore.output) {
-            let _ = pageContext.window.toast("Output directory is unspecified");
-            return;
-        }
-        if (converting) {
+            let _ = pageContext.window.showAlert("Output directory is unspecified");
             return;
         }
         setConverting(true);
@@ -147,7 +154,7 @@ const App = () => {
     }
 
 
-    const outFormats: OptionItem<string>[] = [
+    const outFormats: SelectOption[] = [
         {label: "mp4", value: "mp4"},
         {label: "mkv", value: "mkv"},
         {label: "flv", value: "flv"},
@@ -157,12 +164,12 @@ const App = () => {
         {label: "wmv", value: "wmv"},
     ]
 
-    const outSizes: OptionItem<number>[] = [
-        {label: "Original", value: 0},
-        {label: "360P", value: 360},
-        {label: "480P", value: 480},
-        {label: "720P", value: 720},
-        {label: "1080P", value: 1080},
+    const outSizes: SelectOption[] = [
+        {label: "Original", value: "0"},
+        {label: "360P", value: "360"},
+        {label: "480P", value: "480"},
+        {label: "720P", value: "720"},
+        {label: "1080P", value: "1080"},
     ]
 
     return <Container style={{flex: 1}}>
@@ -172,28 +179,26 @@ const App = () => {
                 <Entry style={{flex: 1}} text={appStore.output} />
                 <Button title="Select..." onClick={onSelectOutDir} />
             </Row>
-            <Row style={{gap: 10}}>
-                <Row style={{gap: 10}}>
+            <Row style={{gap: 10, alignItems: 'center', padding: '10 0'}}>
+                <Row style={{gap: 10, alignItems: 'center'}}>
                     <Label text="Output format:" />
-                    <Select options={outFormats} value={format} onChange={setFormat} />
+                    <Select  style={{width: '6em'}}  options={outFormats} value={format} onChange={onFormatChange} />
                 </Row>
-                <Row style={{gap: 10}}>
+                <Row style={{gap: 10, alignItems: 'center'}}>
                     <Label text="Output size：" />
-                    <Select options={outSizes} value={size} onChange={setSize} />
+                    <Select  style={{width: '8em'}}  options={outSizes} value={size + ""} onChange={onSizeChange} />
                 </Row>
             </Row>
         </Container>
         <Scroll style={{flex: 1, background: '#1E1F22', margin: '0 4'}} >
             {taskWrapper}
         </Scroll>
-        <Row style={{justifyContent: 'space-between', padding: '10', background: '#3C3F41'}}>
-            <Row>
+        <Row style={{justifyContent: 'space-between', padding: '10'}}>
+            <Row style={{gap: 10}}>
                 <Button title="Add Videos..." onClick={onAddFile} />
                 <Button title="Clear" onClick={onClear} />
             </Row>
-            <Button onClick={onStartConvert} style={{
-                color: converting ? '#666' : '#F9F9F9',
-            }}>
+            <Button onClick={onStartConvert} disabled={converting}>
                 Start Convert
             </Button>
         </Row>

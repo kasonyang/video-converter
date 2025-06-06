@@ -1,6 +1,24 @@
 body {
-    color: #f9f9f9;
-    background: #2a2a2a;
+    --deft-border-color: #6E7175;
+    --deft-highlight-border-color: #5993B2;
+    --deft-disabled-border-color: #3A3D41;
+
+    --deft-default-color: #f0f0f0;
+    --deft-disabled-color: #727679;
+    --deft-placeholder-color: #A1A9B1;
+
+    --deft-disabled-placeholder-color: #5A5D63;
+
+    --deft-highlight-background: #3DAEE9;
+    --deft-disabled-background: #2F3338;
+    --deft-form-control-background: #1B1E20;
+    --deft-button-background: #31363B;
+    --deft-body-background: #2A2E32;
+
+    --deft-scrollbar-background: #1B1E20;
+    --deft-scrollbar-thumb-background: #424546;
+
+    --deft-dialog-title-background: #31363B;
 }
 
 button {

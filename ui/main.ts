@@ -1,10 +1,12 @@
-import {DeftWindow} from "deft-react";
 import App from "./app";
 import React from "react";
+import {render} from "deft-react";
 
-function initWindow(): DeftWindow {
-    const window = globalThis.mainWindow || (globalThis.mainWindow = new DeftWindow({
+function initWindow(): Window {
+    const window = globalThis.mainWindow || (globalThis.mainWindow = new Window({
         title: 'VideoConverter',
+        width: 800,
+        height: 600,
     }));
     window.bindResize((e: IResizeEvent) => {
         console.log("window resized", e);
@@ -14,7 +16,7 @@ function initWindow(): DeftWindow {
 
 function main() {
     const window = initWindow();
-    window.newPage(React.createElement(App))
+    render(window, React.createElement(App))
 }
 
 main();

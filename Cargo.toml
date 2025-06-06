@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-deft = "0.4.3"
+deft = { version = "0.10.2", features = ["dialog"] }
 ffmpeg-next = "7.1.0"
 serde = { version = "1.0.213", features = ["derive"] }
 
@@ -13,8 +13,6 @@ deft-build = { version = "0.2.0" }
 
 [features]
 tray = ["deft/tray"]
-x11 = ["deft/x11"]
-wayland = ["deft/wayland"]
 
 #[lib]
 #name = "deftapp"
